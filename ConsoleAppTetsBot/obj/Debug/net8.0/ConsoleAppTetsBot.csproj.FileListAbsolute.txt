@@ -1,0 +1,17 @@
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\bin\Debug\net8.0\ConsoleAppTetsBot.exe
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\bin\Debug\net8.0\ConsoleAppTetsBot.deps.json
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\bin\Debug\net8.0\ConsoleAppTetsBot.runtimeconfig.json
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\bin\Debug\net8.0\ConsoleAppTetsBot.dll
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\bin\Debug\net8.0\ConsoleAppTetsBot.pdb
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\bin\Debug\net8.0\Telegram.Bot.dll
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.csproj.AssemblyReference.cache
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.AssemblyInfoInputs.cache
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.AssemblyInfo.cs
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.csproj.CoreCompileInputs.cache
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleA.B62D9476.Up2Date
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.dll
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\refint\ConsoleAppTetsBot.dll
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.pdb
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.genruntimeconfig.cache
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ref\ConsoleAppTetsBot.dll
