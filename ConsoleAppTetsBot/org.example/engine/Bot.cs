@@ -11,7 +11,7 @@ public class Bot
 
     public Bot()
     {
-        _botClient = new TelegramBotClient("5480525378:AAEY5Ba6XBhG-q7FuA8CrP62V1i3916t1Zs");
+        _botClient = new TelegramBotClient("8108328648:AAEc9MytfhK1aypmrQ__MUVBteFljBbo9zs");
         _cancellationTokenSource = new CancellationTokenSource();
     }
 

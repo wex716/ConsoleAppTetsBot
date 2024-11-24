@@ -4,7 +4,7 @@ namespace ConsoleAppTetsBot.org.example.Buttons;
 
 public class InlineKeyboardsStorage
 {
-    public InlineKeyboardMarkup GetStartKeyboard = new(new[]
+    public static InlineKeyboardMarkup GetStartKeyboard = new(new[]
     {
         new[]
         {

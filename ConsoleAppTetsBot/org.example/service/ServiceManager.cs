@@ -20,7 +20,7 @@ public class ServiceManager
 
         // начало работы бота
         _methods.Add(State.WaitingCommandStart, startLogic.ProcessWaitingCommandStart);
-        /*_methods.Add(State.WaitingQuestionsOrApplicationOrHistory,
+        _methods.Add(State.WaitingQuestionsOrApplicationOrHistory,
             startLogic.ProcessWaitingQuestionsOrApplicationOrHistory);
         _methods.Add(State.WaitingQuestions, startLogic.ProcessWaitingQuestions);
 
@@ -39,7 +39,7 @@ public class ServiceManager
         _methods.Add(State.WaitingViewProblemProjector, faqLogic.ProcessWaitingViewProblemProjector);
         _methods.Add(State.WaitingFirstInfoProblemProjector, faqLogic.ProcessWaitingFirstInfoProblemProjector);
         _methods.Add(State.WaitingSecondInfoProblemProjector, faqLogic.ProcessWaitingSecondInfoProblemProjector);
-        _methods.Add(State.WaitingThirdInfoProblemProjector, faqLogic.ProcessWaitingThirdInfoProblemProjector);*/
+        _methods.Add(State.WaitingThirdInfoProblemProjector, faqLogic.ProcessWaitingThirdInfoProblemProjector);
     }
 
     public BotTextMessage ProcessBotUpdate(string textData, TransmittedData transmittedData)

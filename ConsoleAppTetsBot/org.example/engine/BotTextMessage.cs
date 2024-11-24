@@ -4,8 +4,8 @@ namespace ConsoleAppTetsBot;
 
 public class BotTextMessage
 {
-    public string Text { set; get; }
-    public InlineKeyboardMarkup InlineKeyboardMarkup { set; get; }
+    public string Text { get; set; }
+    public InlineKeyboardMarkup InlineKeyboardMarkup { get; }
     public long ChatId { get; set; }
 
     public BotTextMessage(string text)
