@@ -113,4 +113,75 @@ public class InlineKeyboardsStorage
                 InlineButtonsStorage.BackToMenu.CallBackData),
         },
     });
+
+    public static InlineKeyboardMarkup GetAddressKeyboard = new(new[]
+    {
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.FirstAddressPlace.Name,
+                InlineButtonsStorage.FirstAddressPlace.CallBackData),
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.SecondAddressPlace.Name,
+                InlineButtonsStorage.SecondAddressPlace.CallBackData),
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.ThirdAddressPlace.Name,
+                InlineButtonsStorage.ThirdAddressPlace.CallBackData),
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.FourAddressPlace.Name,
+                InlineButtonsStorage.FourAddressPlace.CallBackData),
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.FiveAddressPlace.Name,
+                InlineButtonsStorage.FiveAddressPlace.CallBackData),
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.BackToMenu.Name,
+                InlineButtonsStorage.BackToMenu.CallBackData),
+        },
+    });
+
+    public static InlineKeyboardMarkup GetQuestionKeyboard = new(new[]
+    {
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.YesSendPhoto.Name,
+                InlineButtonsStorage.YesSendPhoto.CallBackData),
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.NoSendPhoto.Name,
+                InlineButtonsStorage.NoSendPhoto.CallBackData),
+        }
+    });
+
+    public static InlineKeyboardMarkup GetVerificationDataKeyboard = new(new[]
+    {
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.SendApplication.Name,
+                InlineButtonsStorage.SendApplication.CallBackData),
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.CancelApplication.Name,
+                InlineButtonsStorage.CancelApplication.CallBackData),
+        }
+    });
+
+    public static InlineKeyboardMarkup GetMenuKeyboard = new(new[]
+    {
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.BackToMenu.Name,
+                InlineButtonsStorage.BackToMenu.CallBackData),
+        }
+    });
 }

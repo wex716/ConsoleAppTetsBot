@@ -65,6 +65,17 @@ public class StartLogic
             );
         }
 
+        if (textFromUser.Equals(InlineButtonsStorage.SubmitApplication.CallBackData))
+        {
+            transmittedData.State = State.WaitingApplication;
+            messageToUser.Text = "Пожалуйста, выберите адрес площадки.";
+
+            return new BotTextMessage(
+                messageToUser.Text,
+                InlineKeyboardsStorage.GetAddressKeyboard
+            );
+        }
+
         return messageToUser;
     }
 
@@ -95,7 +106,8 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingViewProblemComputer;
 
-            messageToUser.Text = "Список проблем: \n1. Отсутствует подключение к сети Интернет \n2. Не включается компьютер \n3. Проблема с монитором.";
+            messageToUser.Text =
+                "Список проблем: \n1. Отсутствует подключение к сети Интернет \n2. Не включается компьютер \n3. Проблема с монитором.";
 
             return new BotTextMessage(
                 messageToUser.Text,
@@ -108,7 +120,7 @@ public class StartLogic
             messageToUser.Text = "Список проблем: \n1. Не подключается к компьютеру \n2. Замятие бумаги.";
 
             transmittedData.State = State.WaitingViewProblemPrinter;
-            
+
             return new BotTextMessage(
                 messageToUser.Text,
                 InlineKeyboardsStorage.GetProblemFoursButtonsKeyboard
@@ -147,4 +159,97 @@ public class StartLogic
     }
 
     #endregion
+
+    public BotTextMessage ProcessWaitingApplication(string textFromUser, TransmittedData transmittedData)
+    {
+        var messageToUser = new BotTextMessage(textFromUser)
+        {
+            ChatId = transmittedData.ChatId,
+        };
+
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstAddressPlace.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondAddressPlace.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.ThirdAddressPlace.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.FourAddressPlace.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.FiveAddressPlace.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
+        {
+            messageToUser.Text = "Ошибка. Нажмите на кнопку.";
+            return new BotTextMessage(
+                messageToUser.Text
+            );
+        }
+
+        if (textFromUser.Equals(InlineButtonsStorage.FirstAddressPlace.CallBackData))
+        {
+            transmittedData.State = State.WaitingInputCabinetNumber;
+
+            messageToUser.Text = "Введите номер кабинета.";
+
+            return new BotTextMessage(
+                messageToUser.Text
+            );
+        }
+
+        if (textFromUser.Equals(InlineButtonsStorage.SecondAddressPlace.CallBackData))
+        {
+            transmittedData.State = State.WaitingInputCabinetNumber;
+
+            messageToUser.Text = "Введите номер кабинета.";
+
+            return new BotTextMessage(
+                messageToUser.Text
+            );
+        }
+
+        if (textFromUser.Equals(InlineButtonsStorage.ThirdAddressPlace.CallBackData))
+        {
+            transmittedData.State = State.WaitingInputCabinetNumber;
+
+            messageToUser.Text = "Введите номер кабинета.";
+
+            return new BotTextMessage(
+                messageToUser.Text
+            );
+        }
+
+        if (textFromUser.Equals(InlineButtonsStorage.FourAddressPlace.CallBackData))
+        {
+            transmittedData.State = State.WaitingInputCabinetNumber;
+
+            messageToUser.Text = "Введите номер кабинета.";
+
+            return new BotTextMessage(
+                messageToUser.Text
+            );
+        }
+
+        if (textFromUser.Equals(InlineButtonsStorage.FiveAddressPlace.CallBackData))
+        {
+            transmittedData.State = State.WaitingInputCabinetNumber;
+
+            messageToUser.Text = "Введите номер кабинета.";
+
+            return new BotTextMessage(
+                messageToUser.Text
+            );
+        }
+
+        if (textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
+        {
+            transmittedData.State = State.WaitingQuestionsOrApplicationOrHistory;
+
+            messageToUser.Text = "Выберите то что вы хотите.";
+
+            return new BotTextMessage(
+                messageToUser.Text,
+                InlineKeyboardsStorage.GetStartKeyboard
+            );
+        }
+
+        return new BotTextMessage(
+            messageToUser.Text,
+            InlineKeyboardsStorage.GetProblemSystemShowKeyboard
+        );
+    }
 }
