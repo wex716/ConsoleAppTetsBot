@@ -12,16 +12,20 @@ namespace ConsoleAppTetsBot;
 public class BotHandlers
 {
     private ChatsRouter _chatsRouter;
+
     public BotHandlers()
     {
         _chatsRouter = new ChatsRouter();
     }
-   public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
+
+    public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
         CancellationToken cancellationToken)
     {
         long chatId = 0;
         int messageId = 0;
         string textFromUser = "";
+
+        InputFile photo = null;
 
         bool canRoute = false;
 
@@ -35,6 +39,13 @@ public class BotHandlers
                     messageId = update.Message.MessageId;
                     textFromUser = update.Message.Text;
                 }
+                
+                /*else if (update.Message.Photo != null)
+                {
+                    chatId: update.Message.Chat.Id,
+                    photo = new InputFileId(update.Message.Photo.Last().FileId);
+
+                }*/
 
                 break;
 
@@ -56,12 +67,17 @@ public class BotHandlers
             {
                 BotTextMessage botTextMessage =
                     await Task.Run(() => _chatsRouter.Route(chatId, textFromUser), cancellationToken);
-                
+
                 await botClient.SendTextMessageAsync(
                     chatId: chatId,
                     text: botTextMessage.Text,
                     replyMarkup: botTextMessage.InlineKeyboardMarkup,
                     cancellationToken: cancellationToken);
+
+                /*if (photo != null)
+                {
+                    await Task.Run(() => _chatsRouter.RoutePhoto(chatId, photo, botClient), cancellationToken);
+                }*/
             }
             catch (Exception e)
             {
@@ -91,6 +107,7 @@ public class BotHandlers
             }
                 break;
         }
+
         return Task.CompletedTask;
     }
 }

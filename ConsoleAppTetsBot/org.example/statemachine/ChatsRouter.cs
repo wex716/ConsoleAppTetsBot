@@ -1,4 +1,6 @@
 ﻿using ConsoleAppTetsBot.org.example.service;
+using Telegram.Bot;
+using Telegram.Bot.Types;
 
 namespace ConsoleAppTetsBot.org.example.statemachine;
 
@@ -24,4 +26,23 @@ public class ChatsRouter
 
         return _serviceManager.ProcessBotUpdate(textFromUser, transmittedData);
     }
+
+    /*public BotTextMessage RoutePhoto(long chatId, InputFile photo, ITelegramBotClient botClient)
+    {
+        try
+        {
+            string filePath =
+                Path.Combine("photos", $"{chatId}_{photo.FileType}");
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                botClient.DownloadFile(photo.FileType.ToString(), fileStream);
+            }
+
+            return new BotTextMessage("Все гуд");
+        }
+        catch (Exception ex)
+        {
+            return new BotTextMessage("Ошибка");
+        }
+    }*/
 }

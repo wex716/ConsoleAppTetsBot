@@ -80,8 +80,7 @@ public class StartLogic
     }
 
     #endregion
-
-
+    
     #region вопросы
 
     public BotTextMessage ProcessWaitingQuestions(string textFromUser, TransmittedData transmittedData)
@@ -159,6 +158,8 @@ public class StartLogic
     }
 
     #endregion
+
+    #region заявка
 
     public BotTextMessage ProcessWaitingApplication(string textFromUser, TransmittedData transmittedData)
     {
@@ -252,4 +253,6 @@ public class StartLogic
             InlineKeyboardsStorage.GetProblemSystemShowKeyboard
         );
     }
+
+    #endregion
 }

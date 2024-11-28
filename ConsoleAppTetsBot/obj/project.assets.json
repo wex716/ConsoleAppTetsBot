@@ -131,7 +131,7 @@
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
       },
-      "Telegram.Bot/22.1.1": {
+      "Telegram.Bot/22.1.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Options.ConfigurationExtensions": "8.0.0",
@@ -437,10 +437,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Telegram.Bot/22.1.1": {
-      "sha512": "DKvs/nT1Zp2JjHgehQ0n3eXpHu4xLqOE5YC0mL8F12NOuUA/7B/V5w6BWmyLylom+0yhGdjV+SX+KTckUR+/3A==",
+    "Telegram.Bot/22.1.3": {
+      "sha512": "sEY7ihfNuvrcGRYsvTwtKQpLP2WJnnLK7FiVwMN3fZe5cDTed3w9SUNZA6Q8jC3QmVR/zW8BeRoJXkHkeOV2VQ==",
       "type": "package",
-      "path": "telegram.bot/22.1.1",
+      "path": "telegram.bot/22.1.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -452,14 +452,14 @@
         "lib/netstandard2.0/Telegram.Bot.pdb",
         "lib/netstandard2.0/Telegram.Bot.xml",
         "package-icon.png",
-        "telegram.bot.22.1.1.nupkg.sha512",
+        "telegram.bot.22.1.3.nupkg.sha512",
         "telegram.bot.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Telegram.Bot >= 22.1.1"
+      "Telegram.Bot >= 22.1.3"
     ]
   },
   "packageFolders": {
@@ -513,7 +513,7 @@
         "dependencies": {
           "Telegram.Bot": {
             "target": "Package",
-            "version": "[22.1.1, )"
+            "version": "[22.1.3, )"
           }
         },
         "imports": [
