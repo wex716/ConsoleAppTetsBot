@@ -1,6 +1,5 @@
 ﻿using ConsoleAppTetsBot.org.example.Buttons;
 using ConsoleAppTetsBot.org.example.statemachine;
-using Telegram.Bot.Types.ReplyMarkups;
 
 namespace ConsoleAppTetsBot.org.example.service.logic;
 

@@ -1,6 +1,4 @@
 ﻿using ConsoleAppTetsBot.org.example.service;
-using Telegram.Bot;
-using Telegram.Bot.Types;
 
 namespace ConsoleAppTetsBot.org.example.statemachine;
 
