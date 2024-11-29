@@ -7,7 +7,6 @@ public enum State
     WaitingCommandStart,
     WaitingQuestionsOrApplicationOrHistory,
     WaitingQuestions,
-    WaitingSubmitApplication,
     WaitingApplication,
 
     #endregion

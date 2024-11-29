@@ -7,16 +7,11 @@ namespace ConsoleAppTetsBot.org.example.service.logic;
 
 public class ApplicationLogic
 {
-    #region ввод номена кабинета
+    #region ввод номера кабинета
 
     public BotTextMessage ProcessWaitingInputCabinetNumber(string textFromUser,
         TransmittedData transmittedData)
     {
-        var messageToUser = new BotTextMessage(textFromUser)
-        {
-            ChatId = transmittedData.ChatId,
-        };
-
         int minLength = 2;
         int maxLength = 6;
 
@@ -24,25 +19,22 @@ public class ApplicationLogic
 
         if (cleanedNumber.Length < 1)
         {
-            messageToUser.Text = "Ошибка ввода номера кабинета. Введите число.";
-            return messageToUser;
+            return new BotTextMessage("Ошибка ввода номера кабинета. Введите число.");
         }
 
         if (cleanedNumber.Length < minLength || cleanedNumber.Length > maxLength)
         {
-            messageToUser.Text = "Ошибка ввода номера кабинета. Номер должен содержать от " + minLength + " до " +
-                                 maxLength + " цифр.";
-            return messageToUser;
+            return new BotTextMessage("Ошибка ввода номера кабинета. Номер должен содержать от " + minLength + " до " +
+                                      maxLength + " цифр.");
         }
 
         var cabinetNumber = Convert.ToInt32(cleanedNumber);
 
         transmittedData.DataStorage.Add("cabinetNumber", cabinetNumber);
 
-        messageToUser.Text = "Номер кабинета успешно записан. Теперь введите ФИО.";
         transmittedData.State = State.WaitingInputFullName;
 
-        return messageToUser;
+        return new BotTextMessage("Номер кабинета успешно записан. Теперь введите ФИО.");
     }
 
     #endregion
@@ -52,26 +44,28 @@ public class ApplicationLogic
     public BotTextMessage ProcessWaitingInputFullName(string textFromUser,
         TransmittedData transmittedData)
     {
-        var messageToUser = new BotTextMessage(textFromUser)
+        if (string.IsNullOrEmpty(textFromUser))
         {
-            ChatId = transmittedData.ChatId,
-        };
+            return new BotTextMessage("Пожалуйста, введите ФИО.");
+        }
 
-        if (textFromUser.Length < 100)
+        textFromUser = textFromUser.Trim();
+
+        if (textFromUser.Length > 100)
         {
-            messageToUser.Text = "Ошибка. Максимальная длина ФИО 100 символов. Пожалуйста, введите ФИО заново.";
+            return new BotTextMessage("Ошибка. Максимальная длина ФИО 100 символов. Пожалуйста, введите ФИО заново.");
         }
 
         if (!Regex.IsMatch(textFromUser, @"^[А-Яа-яЁё\s\-\']+$", RegexOptions.IgnoreCase))
         {
-            messageToUser.Text = "Введите ФИО на русском языке";
-            return messageToUser;
+            return new BotTextMessage("Введите ФИО на русском языке");
         }
 
-        transmittedData.DataStorage.Add("FIO", textFromUser);
-        messageToUser.Text = "ФИО успешно записан. Теперь введите номер телефона.";
+        transmittedData.DataStorage.Add("fullName", textFromUser);
+
         transmittedData.State = State.WaitingInputNumberPhone;
-        return messageToUser;
+
+        return new BotTextMessage("ФИО успешно записан. Теперь введите номер телефона.");
     }
 
     #endregion
@@ -81,33 +75,31 @@ public class ApplicationLogic
     public BotTextMessage ProcessWaitingInputNumberPhone(string textFromUser,
         TransmittedData transmittedData)
     {
-        var messageToUser = new BotTextMessage(textFromUser)
-        {
-            ChatId = transmittedData.ChatId,
-        };
-
-        String cleanedNumber = textFromUser.Replace("[^0-9]", "");
-
         if (string.IsNullOrEmpty(textFromUser))
         {
-            messageToUser.Text = "Ошибка ввода номера телефона. Введите номер телефона";
-            return messageToUser;
+            return new BotTextMessage("Пожалуйста, введите номер телефона.");
         }
+
+        string cleanedNumber = Regex.Replace(textFromUser, "[^0-9]", "");
 
         int minLength = 10;
         int maxLength = 30;
+
         if (cleanedNumber.Length < minLength || cleanedNumber.Length > maxLength)
         {
-            messageToUser.Text = "Ошибка ввода номера телефона. Номер должен содержать от " + minLength + " до " +
-                                 maxLength + " цифр.";
-            return messageToUser;
+            return new BotTextMessage($"Ошибка: Номер телефона должен содержать от {minLength} до {maxLength} цифр.");
+        }
+
+        if (!cleanedNumber.All(char.IsDigit))
+        {
+            return new BotTextMessage("Ошибка: Номер телефона должен содержать только цифры.");
         }
 
         transmittedData.DataStorage.Add("numberPhone", cleanedNumber);
-        messageToUser.Text = "Номер телефона успешно записан. Теперь опишите проблему.";
+
         transmittedData.State = State.WaitingDescriptionProblem;
 
-        return messageToUser;
+        return new BotTextMessage("Номер телефона успешно записан. Теперь опишите проблему.");
     }
 
     #endregion
@@ -117,24 +109,18 @@ public class ApplicationLogic
     public BotTextMessage ProcessWaitingDescriptionProblem(string textFromUser,
         TransmittedData transmittedData)
     {
-        var messageToUser = new BotTextMessage(textFromUser)
-        {
-            ChatId = transmittedData.ChatId,
-        };
-
         if (string.IsNullOrEmpty(textFromUser))
         {
-            messageToUser.Text = "Ошибка. Не может быть пустое сообщение.";
+            return new BotTextMessage("Ошибка. Не может быть пустое сообщение.");
         }
 
         transmittedData.DataStorage.Add("descriptionProblem", textFromUser);
-        messageToUser.Text = "Описание проблемы успешно записано. Хотите добавить фото?";
+
         transmittedData.State = State.WaitingQuestionAddPhoto;
 
-        return new BotTextMessage(
-            messageToUser.Text,
-            InlineKeyboardsStorage.GetQuestionKeyboard
-        );
+        textFromUser = "Описание проблемы успешно записано. Хотите добавить фото?";
+
+        return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetQuestionKeyboard);
     }
 
     #endregion
@@ -144,53 +130,42 @@ public class ApplicationLogic
     public BotTextMessage ProcessWaitingQuestionAddPhoto(string textFromUser,
         TransmittedData transmittedData)
     {
-        var messageToUser = new BotTextMessage(textFromUser)
-        {
-            ChatId = transmittedData.ChatId,
-        };
-
         if (!textFromUser.Equals(InlineButtonsStorage.YesSendPhoto.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.NoSendPhoto.CallBackData))
         {
-            messageToUser.Text = "Ошибка. Нажмите на кнопку.";
-            return messageToUser;
+            textFromUser = "Ошибка. Нажмите на кнопку.";
+
+            return new BotTextMessage(textFromUser);
         }
 
         if (textFromUser.Equals(InlineButtonsStorage.YesSendPhoto.CallBackData))
         {
-            messageToUser.Text = "Отправьте фото, чтобы прикрепить его к заявке";
-
             transmittedData.State = State.WaitingPhoto;
 
-            return messageToUser;
+            textFromUser = "Отправьте фото, чтобы прикрепить его к заявке";
+
+            return new BotTextMessage(textFromUser);
         }
 
         if (textFromUser.Equals(InlineButtonsStorage.NoSendPhoto.CallBackData))
         {
-            StringBuilder text = new StringBuilder("Проверьте данные\n\n");
+            var text = new StringBuilder("Проверьте данные\n\n");
 
-            //messageText.append("Адрес площадки: ").append(data.get("cabinetNumber")).append("\n"); - тянется с бд
-
+            //messageText.append("Адрес площадки: ").append(data.get("cabinetNumber")).append("\n");
             text.Append("номер кабинета: ").Append(transmittedData.DataStorage.Get("cabinetNumber")).Append("\n");
-            text.Append("ФИО: ").Append(transmittedData.DataStorage.Get("FIO")).Append("\n");
-            ;
+            text.Append("ФИО: ").Append(transmittedData.DataStorage.Get("fullName")).Append("\n");
             text.Append("номер телефона: ").Append(transmittedData.DataStorage.Get("numberPhone")).Append("\n");
-            ;
             text.Append("описание проблемы: ").Append(transmittedData.DataStorage.Get("descriptionProblem"))
                 .Append("\n");
-            ;
 
-            messageToUser.Text = text.ToString();
+            textFromUser = text.ToString();
 
             transmittedData.State = State.WaitingDataVerification;
 
-            return new BotTextMessage(
-                messageToUser.Text,
-                InlineKeyboardsStorage.GetVerificationDataKeyboard
-            );
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetVerificationDataKeyboard);
         }
 
-        return messageToUser;
+        return new BotTextMessage(textFromUser);
     }
 
     #endregion
@@ -200,33 +175,21 @@ public class ApplicationLogic
     public BotTextMessage ProcessWaitingPhoto(string textFromUser,
         TransmittedData transmittedData)
     {
-        var messageToUser = new BotTextMessage(textFromUser)
-        {
-            ChatId = transmittedData.ChatId,
-        };
+        textFromUser = "Фото успешно прикреплено!";
 
-        messageToUser.Text = "Фото успешно прикреплено!";
-
-        StringBuilder text = new StringBuilder("Проверьте данные\n\n");
+        var text = new StringBuilder("Проверьте данные\n\n");
 
         //messageText.append("Адрес площадки: ").append(data.get("cabinetNumber")).append("\n"); - тянется с бд
-
         text.Append("номер кабинета: ").Append(transmittedData.DataStorage.Get("cabinetNumber")).Append("\n");
         text.Append("ФИО: ").Append(transmittedData.DataStorage.Get("FIO")).Append("\n");
-        ;
         text.Append("номер телефона: ").Append(transmittedData.DataStorage.Get("numberPhone")).Append("\n");
-        ;
         text.Append("описание проблемы: ").Append(transmittedData.DataStorage.Get("descriptionProblem")).Append("\n");
-        ;
 
-        messageToUser.Text = text.ToString();
+        textFromUser = text.ToString();
 
         transmittedData.State = State.WaitingDataVerification;
 
-        return new BotTextMessage(
-            messageToUser.Text,
-            InlineKeyboardsStorage.GetVerificationDataKeyboard
-        );
+        return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetVerificationDataKeyboard);
     }
 
     #endregion
@@ -236,49 +199,37 @@ public class ApplicationLogic
     public BotTextMessage ProcessWaitingDataVerification(string textFromUser,
         TransmittedData transmittedData)
     {
-        var messageToUser = new BotTextMessage(textFromUser)
-        {
-            ChatId = transmittedData.ChatId,
-        };
-
         if (!textFromUser.Equals(InlineButtonsStorage.SendApplication.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.CancelApplication.CallBackData))
         {
-            messageToUser.Text = "Ошибка. Нажмите на кнопку.";
+            textFromUser = "Ошибка. Нажмите на кнопку.";
 
-            return messageToUser;
+            return new BotTextMessage(textFromUser);
         }
 
         if (textFromUser.Equals(InlineButtonsStorage.SendApplication.CallBackData))
         {
-            messageToUser.Text =
-                "Заявка №222 успешно создана! Вам придет уведомление, когда статус заявки будет изменен"; // тянется с бд
-
             transmittedData.State = State.WaitingReadApplication;
+
+            textFromUser = "Заявка №222 успешно создана! Вам придет уведомление, когда статус заявки будет изменен";
 
             transmittedData.DataStorage.Clear();
 
-            return new BotTextMessage(
-                messageToUser.Text,
-                InlineKeyboardsStorage.GetMenuKeyboard
-            );
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetMenuKeyboard);
         }
 
         if (textFromUser.Equals(InlineButtonsStorage.CancelApplication.CallBackData))
         {
-            messageToUser.Text = "Пожалуйста, выберите адрес площадки.";
-
             transmittedData.State = State.WaitingApplication;
+
+            textFromUser = "Пожалуйста, выберите адрес площадки.";
 
             transmittedData.DataStorage.Clear();
 
-            return new BotTextMessage(
-                messageToUser.Text,
-                InlineKeyboardsStorage.GetAddressKeyboard
-            );
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetAddressKeyboard);
         }
 
-        return messageToUser;
+        return new BotTextMessage(textFromUser);
     }
 
     #endregion
@@ -288,30 +239,23 @@ public class ApplicationLogic
     public BotTextMessage ProcessWaitingReadApplication(string textFromUser,
         TransmittedData transmittedData)
     {
-        var messageToUser = new BotTextMessage(textFromUser)
-        {
-            ChatId = transmittedData.ChatId,
-        };
-
         if (!textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
-            messageToUser.Text = "Ошибка. Нажмите на кнопку.";
+            textFromUser = "Ошибка. Нажмите на кнопку.";
 
-            return messageToUser;
+            return new BotTextMessage(textFromUser);
         }
 
         if (textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
-            messageToUser.Text = "Выберите то что вы хотите.";
             transmittedData.State = State.WaitingQuestionsOrApplicationOrHistory;
 
-            return new BotTextMessage(
-                messageToUser.Text,
-                InlineKeyboardsStorage.GetStartKeyboard
-            );
+            textFromUser = "Выберите то что вы хотите.";
+
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetStartKeyboard);
         }
 
-        return messageToUser;
+        return new BotTextMessage(textFromUser);
     }
 
     #endregion
