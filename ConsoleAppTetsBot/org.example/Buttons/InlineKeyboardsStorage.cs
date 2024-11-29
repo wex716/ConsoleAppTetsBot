@@ -8,8 +8,8 @@ public class InlineKeyboardsStorage
     {
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.ShowQuestionsStart.Name,
-                InlineButtonsStorage.ShowQuestionsStart.CallBackData),
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.ShowQuestions.Name,
+                InlineButtonsStorage.ShowQuestions.CallBackData),
         },
         new[]
         {
@@ -51,23 +51,23 @@ public class InlineKeyboardsStorage
     {
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.First.Name,
-                InlineButtonsStorage.First.CallBackData),
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.FirstInfo.Name,
+                InlineButtonsStorage.FirstInfo.CallBackData),
         },
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.Second.Name,
-                InlineButtonsStorage.Second.CallBackData),
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.SecondInfo.Name,
+                InlineButtonsStorage.SecondInfo.CallBackData),
         },
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.Third.Name,
-                InlineButtonsStorage.Third.CallBackData),
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.ThirdInfo.Name,
+                InlineButtonsStorage.ThirdInfo.CallBackData),
         },
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.MovePrevShow.Name,
-                InlineButtonsStorage.MovePrevShow.CallBackData),
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.Back.Name,
+                InlineButtonsStorage.Back.CallBackData),
         },
         new[]
         {
@@ -80,18 +80,18 @@ public class InlineKeyboardsStorage
     {
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.First.Name,
-                InlineButtonsStorage.First.CallBackData),
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.FirstInfo.Name,
+                InlineButtonsStorage.FirstInfo.CallBackData),
         },
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.Second.Name,
-                InlineButtonsStorage.Second.CallBackData),
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.SecondInfo.Name,
+                InlineButtonsStorage.SecondInfo.CallBackData),
         },
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.MovePrevShow.Name,
-                InlineButtonsStorage.MovePrevShow.CallBackData),
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.Back.Name,
+                InlineButtonsStorage.Back.CallBackData),
         },
         new[]
         {
@@ -104,8 +104,8 @@ public class InlineKeyboardsStorage
     {
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.MovePrevShow.Name,
-                InlineButtonsStorage.MovePrevShow.CallBackData),
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.Back.Name,
+                InlineButtonsStorage.Back.CallBackData),
         },
         new[]
         {
@@ -176,7 +176,7 @@ public class InlineKeyboardsStorage
         }
     });
 
-    public static InlineKeyboardMarkup GetMenuKeyboard = new(new[]
+    public static InlineKeyboardMarkup GetBackToMenuKeyboard = new(new[]
     {
         new[]
         {

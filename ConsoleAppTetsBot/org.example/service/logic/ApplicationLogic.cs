@@ -215,7 +215,7 @@ public class ApplicationLogic
 
             transmittedData.DataStorage.Clear();
 
-            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetMenuKeyboard);
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackToMenuKeyboard);
         }
 
         if (textFromUser.Equals(InlineButtonsStorage.CancelApplication.CallBackData))

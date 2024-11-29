@@ -2,11 +2,11 @@
 
 public class InlineButtonsStorage
 {
-    public static InlineButton MovePrevShow { get; } = new InlineButton("Назад", "MovePrevShow");
+    public static InlineButton Back { get; } = new InlineButton("Назад", "MovePrevShow");
 
     public static InlineButton BackToMenu { get; } = new InlineButton("Главное меню", "BackToMenu");
 
-    public static InlineButton ShowQuestionsStart { get; } = new InlineButton("Частые вопросы", "ShowQuestionsStart");
+    public static InlineButton ShowQuestions { get; } = new InlineButton("Частые вопросы", "ShowQuestionsStart");
 
     public static InlineButton SubmitApplication { get; } = new InlineButton("Оставить заявку", "SubmitApplication");
 
@@ -17,9 +17,9 @@ public class InlineButtonsStorage
     public static InlineButton ViewProblemProjector { get; } = new InlineButton("Проектор", "ViewProblemProjector");
 
 
-    public static InlineButton First { get; } = new InlineButton("1", "First");
-    public static InlineButton Second { get; } = new InlineButton("2", "Second");
-    public static InlineButton Third { get; } = new InlineButton("3", "Third");
+    public static InlineButton FirstInfo { get; } = new InlineButton("1", "FirstInfo");
+    public static InlineButton SecondInfo { get; } = new InlineButton("2", "SecondInfo");
+    public static InlineButton ThirdInfo { get; } = new InlineButton("3", "ThirdInfo");
 
     public static InlineButton YesSendPhoto { get; } = new InlineButton("Да", "YesSendPhoto");
     public static InlineButton NoSendPhoto { get; } = new InlineButton("Нет", "NoSendPhoto");

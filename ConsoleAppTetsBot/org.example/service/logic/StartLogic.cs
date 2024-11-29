@@ -22,10 +22,7 @@ public class StartLogic
 
         textFromUser = "Выберите то что вы хотите";
 
-        return new BotTextMessage(
-            textFromUser,
-            InlineKeyboardsStorage.GetStartKeyboard
-        );
+        return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetStartKeyboard);
     }
 
     #endregion
@@ -35,7 +32,7 @@ public class StartLogic
     public BotTextMessage ProcessWaitingQuestionsOrApplicationOrHistory(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.ShowQuestionsStart.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.ShowQuestions.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.SubmitApplication.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.SubmitHistory.CallBackData))
         {
@@ -45,7 +42,7 @@ public class StartLogic
             );
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.ShowQuestionsStart.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.ShowQuestions.CallBackData))
         {
             transmittedData.State = State.WaitingQuestions;
 

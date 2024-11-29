@@ -10,10 +10,10 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingViewProblemComputer(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Third.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.ThirdInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -21,7 +21,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.First.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData))
         {
             transmittedData.State = State.WaitingFirstInfoProblemComputer;
 
@@ -39,7 +39,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackKeyboard);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.Second.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData))
         {
             transmittedData.State = State.WaitingSecondInfoProblemComputer;
 
@@ -51,7 +51,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackKeyboard);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.Third.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.ThirdInfo.CallBackData))
         {
             transmittedData.State = State.WaitingThirdInfoProblemComputer;
 
@@ -71,7 +71,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackKeyboard);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingQuestions;
 
@@ -95,10 +95,10 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingFirstInfoProblemComputer(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Third.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.ThirdInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -106,7 +106,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingViewProblemComputer;
 
@@ -131,9 +131,9 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingSecondInfoProblemComputer(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -141,7 +141,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingViewProblemComputer;
 
@@ -166,10 +166,10 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingThirdInfoProblemComputer(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Third.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.ThirdInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -177,7 +177,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingViewProblemComputer;
 
@@ -206,19 +206,17 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingViewProblemPrinter(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
 
-            return new BotTextMessage(
-                textFromUser
-            );
+            return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.First.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData))
         {
             transmittedData.State = State.WaitingFirstInfoProblemPrinter;
 
@@ -228,13 +226,10 @@ public class FaqLogic
                            "3.1. В списке найденных устройств выбери ваш принтер и ожидайте подключения;\n" +
                            "3. Если Ваш принтер подключен к компьютеру, то удалите его и подключите заново.\n";
 
-            return new BotTextMessage(
-                textFromUser,
-                InlineKeyboardsStorage.GetBackKeyboard
-            );
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackKeyboard);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.Second.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData))
         {
             transmittedData.State = State.WaitingSecondInfoProblemPrinter;
 
@@ -243,22 +238,16 @@ public class FaqLogic
                 "2. Откройте заднюю панель принтера;\n" +
                 "3. Вытащите замятый лист и закройте панель;\n";
 
-            return new BotTextMessage(
-                textFromUser,
-                InlineKeyboardsStorage.GetBackKeyboard
-            );
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackKeyboard);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingQuestions;
 
             textFromUser = "Выберите с чем возникла проблема";
 
-            return new BotTextMessage(
-                textFromUser,
-                InlineKeyboardsStorage.GetProblemSystemShowKeyboard
-            );
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetProblemSystemShowKeyboard);
         }
 
         if (textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
@@ -267,10 +256,7 @@ public class FaqLogic
 
             textFromUser = "Выберите то что вы хотите";
 
-            return new BotTextMessage(
-                textFromUser,
-                InlineKeyboardsStorage.GetStartKeyboard
-            );
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetStartKeyboard);
         }
 
         return new BotTextMessage(textFromUser);
@@ -279,9 +265,9 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingFirstInfoProblemPrinter(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -289,12 +275,11 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingViewProblemPrinter;
 
-            textFromUser =
-                "Список проблем: \n1. Не подключается к компьютеру \n2. Замятие бумаги";
+            textFromUser = "Список проблем: \n1. Не подключается к компьютеру \n2. Замятие бумаги";
 
             return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetProblemFoursButtonsKeyboard);
         }
@@ -314,9 +299,9 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingSecondInfoProblemPrinter(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -324,7 +309,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingViewProblemPrinter;
 
@@ -353,10 +338,10 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingViewProblemProjector(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Third.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.ThirdInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -364,7 +349,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.First.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData))
         {
             transmittedData.State = State.WaitingFirstInfoProblemProjector;
 
@@ -375,7 +360,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackKeyboard);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.Second.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData))
         {
             transmittedData.State = State.WaitingSecondInfoProblemProjector;
 
@@ -386,7 +371,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackKeyboard);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.Third.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.ThirdInfo.CallBackData))
         {
             transmittedData.State = State.WaitingThirdInfoProblemProjector;
 
@@ -396,7 +381,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackKeyboard);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingQuestions;
 
@@ -420,10 +405,10 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingFirstInfoProblemProjector(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Third.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.ThirdInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -431,7 +416,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingViewProblemProjector;
 
@@ -456,9 +441,9 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingSecondInfoProblemProjector(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -466,7 +451,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingViewProblemProjector;
 
@@ -491,10 +476,10 @@ public class FaqLogic
     public BotTextMessage ProcessWaitingThirdInfoProblemProjector(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.First.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Second.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.Third.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData) &&
+        if (!textFromUser.Equals(InlineButtonsStorage.FirstInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.SecondInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.ThirdInfo.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.Back.CallBackData) &&
             !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
@@ -502,7 +487,7 @@ public class FaqLogic
             return new BotTextMessage(textFromUser);
         }
 
-        if (textFromUser.Equals(InlineButtonsStorage.MovePrevShow.CallBackData))
+        if (textFromUser.Equals(InlineButtonsStorage.Back.CallBackData))
         {
             transmittedData.State = State.WaitingViewProblemProjector;
 
