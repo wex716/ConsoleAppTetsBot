@@ -8,6 +8,7 @@ public enum State
     WaitingQuestionsOrApplicationOrHistory,
     WaitingQuestions,
     WaitingApplication,
+    WaitingHistory,
 
     #endregion
 
@@ -46,7 +47,13 @@ public enum State
     WaitingQuestionAddPhoto,
     WaitingPhoto,
     WaitingDataVerification,
-    WaitingReadApplication
+    WaitingReadApplication,
+
+    #endregion
+
+    #region история заявок
+
+    WaitingShowHistory
 
     #endregion
 }

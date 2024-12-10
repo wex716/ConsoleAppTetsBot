@@ -148,7 +148,7 @@ public class InlineKeyboardsStorage
         },
     });
 
-    public static InlineKeyboardMarkup GetQuestionKeyboard = new(new[]
+    public static InlineKeyboardMarkup GetQuestionPhotoKeyboard = new(new[]
     {
         new[]
         {
@@ -178,6 +178,20 @@ public class InlineKeyboardsStorage
 
     public static InlineKeyboardMarkup GetBackToMenuKeyboard = new(new[]
     {
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.BackToMenu.Name,
+                InlineButtonsStorage.BackToMenu.CallBackData),
+        }
+    });
+
+    public static InlineKeyboardMarkup GetShowKeyboard = new(new[]
+    {
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.Next.Name,
+                InlineButtonsStorage.Next.CallBackData),
+        },
         new[]
         {
             InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.BackToMenu.Name,

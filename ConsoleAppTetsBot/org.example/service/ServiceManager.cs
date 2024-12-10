@@ -1,4 +1,5 @@
-﻿using ConsoleAppTetsBot.org.example.service.logic;
+﻿using System.Diagnostics.Metrics;
+using ConsoleAppTetsBot.org.example.service.logic;
 using ConsoleAppTetsBot.org.example.statemachine;
 
 namespace ConsoleAppTetsBot.org.example.service;
@@ -10,6 +11,7 @@ public class ServiceManager
     private StartLogic _startLogic;
     private FaqLogic _faqLogic;
     private ApplicationLogic _applicationLogic;
+
 
     public ServiceManager()
     {
@@ -23,10 +25,15 @@ public class ServiceManager
         #region начало работы бота
 
         _methods.Add(State.WaitingCommandStart, _startLogic.ProcessWaitingCommandStart);
+
         _methods.Add(State.WaitingQuestionsOrApplicationOrHistory,
             _startLogic.ProcessWaitingQuestionsOrApplicationOrHistory);
+
         _methods.Add(State.WaitingQuestions, _startLogic.ProcessWaitingQuestions);
+
         _methods.Add(State.WaitingApplication, _startLogic.ProcessWaitingApplication);
+
+        _methods.Add(State.WaitingHistory, _startLogic.ProcessWaitingQuestionsOrApplicationOrHistory);
 
         #endregion
 
@@ -66,6 +73,12 @@ public class ServiceManager
         _methods.Add(State.WaitingPhoto, _applicationLogic.ProcessWaitingPhoto);
         _methods.Add(State.WaitingDataVerification, _applicationLogic.ProcessWaitingDataVerification);
         _methods.Add(State.WaitingReadApplication, _applicationLogic.ProcessWaitingReadApplication);
+
+        #endregion
+
+        #region история завявок
+
+        _methods.Add(State.WaitingShowHistory, _startLogic.ProcessWaitingShowHistory);
 
         #endregion
     }

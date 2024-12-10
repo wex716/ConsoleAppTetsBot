@@ -3,10 +3,11 @@
 public class InlineButtonsStorage
 {
     public static InlineButton Back { get; } = new InlineButton("Назад", "MovePrevShow");
+    public static InlineButton Next { get; } = new InlineButton("Вперед", "Next");
 
     public static InlineButton BackToMenu { get; } = new InlineButton("Главное меню", "BackToMenu");
 
-    public static InlineButton ShowQuestions { get; } = new InlineButton("Частые вопросы", "ShowQuestionsStart");
+    public static InlineButton ShowQuestions { get; } = new InlineButton("Частые вопросы", "ShowQuestions");
 
     public static InlineButton SubmitApplication { get; } = new InlineButton("Оставить заявку", "SubmitApplication");
 

@@ -1,5 +1,4 @@
-﻿
-using ConsoleAppTetsBot.org.example.statemachine;
+﻿using ConsoleAppTetsBot.org.example.statemachine;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
@@ -37,13 +36,12 @@ public class BotHandlers
                     messageId = update.Message.MessageId;
                     textFromUser = update.Message.Text;
                 }
-                
-                /*else if (update.Message.Photo != null)
-                {
-                    chatId: update.Message.Chat.Id,
-                    photo = new InputFileId(update.Message.Photo.Last().FileId);
 
-                }*/
+                else if (update.Message.Photo != null)
+                {
+                    chatId = update.Message.Chat.Id;
+                    photo = new InputFileId(update.Message.Photo.Last().FileId);
+                }
 
                 break;
 

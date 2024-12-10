@@ -1,4 +1,5 @@
 ﻿using ConsoleAppTetsBot.org.example.Buttons;
+using ConsoleAppTetsBot.org.example.EmulatorBd;
 using ConsoleAppTetsBot.org.example.statemachine;
 
 namespace ConsoleAppTetsBot.org.example.service.logic;
@@ -59,7 +60,37 @@ public class StartLogic
             return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetAddressKeyboard);
         }
 
-        return new BotTextMessage(textFromUser);
+        if (textFromUser.Equals(InlineButtonsStorage.SubmitHistory.CallBackData))
+        {
+            EntityHistoryShowManager entityHistoryShowManager = new EntityHistoryShowManager();
+            var entityHistoryShows = entityHistoryShowManager.EntityHistoryShows;
+
+            transmittedData.State = State.WaitingShowHistory;
+
+            textFromUser = "Вот какие заявки вы оставляли:\n\n";
+
+            if (entityHistoryShows.Count > 0)
+            {
+                for (int i = 0; i < entityHistoryShows.Count; i++)
+                {
+                    EntityHistoryShow entityHistoryShow = entityHistoryShows[i];
+                    textFromUser += $"  ID: {entityHistoryShow.Id}\n";
+                    textFromUser += $"  Статус: {entityHistoryShow.IsActive}\n";
+                    textFromUser += $"  Адрес: {entityHistoryShow.AddressOfPlace}\n";
+                    textFromUser += $"  Кабинет: {entityHistoryShow.NumberCabinet}\n";
+                    textFromUser += $"  Телефон: {entityHistoryShow.NumberPhone}\n";
+                    textFromUser += $"  Описание: {entityHistoryShow.DesciptionOfProblem}\n";
+                    textFromUser += $"  Дата/Время: {entityHistoryShow.DateTime}\n";
+                    textFromUser += "\n";
+                }
+
+                return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetShowKeyboard);
+            }
+
+            return new BotTextMessage(textFromUser);
+        }
+
+        return null;
     }
 
     #endregion
@@ -192,6 +223,42 @@ public class StartLogic
         }
 
         return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetProblemSystemShowKeyboard);
+    }
+
+    #endregion
+
+    #region история заявок
+
+    public BotTextMessage ProcessWaitingShowHistory(string textFromUser, TransmittedData transmittedData)
+    {
+        if (!textFromUser.Equals(InlineButtonsStorage.Next.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
+        {
+            textFromUser = "Ошибка. Нажмите на кнопку.";
+            return new BotTextMessage(
+                textFromUser
+            );
+        }
+
+        if (textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
+        {
+            transmittedData.State = State.WaitingQuestionsOrApplicationOrHistory;
+
+            textFromUser = "Выберите то что вы хотите.";
+
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetStartKeyboard);
+        }
+
+        if (textFromUser.Equals(InlineButtonsStorage.Next.CallBackData))
+        {
+            transmittedData.State = State.WaitingQuestionsOrApplicationOrHistory;
+
+            textFromUser = "Следуюшей заявки не будет.Выберите то что вы хотите.";
+
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetStartKeyboard);
+        }
+
+        return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetStartKeyboard);
     }
 
     #endregion
