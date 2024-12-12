@@ -19,9 +19,9 @@ public class DataStorage
         _data.Remove(key);
     }
 
-    public object Get(string key)
+    public string Get(string key)
     {
-        return _data[key];
+        return (string)_data[key];
     }
 
     public void Clear()

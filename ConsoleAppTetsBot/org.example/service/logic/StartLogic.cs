@@ -172,6 +172,8 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
+            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.FirstAddressPlace.Name);
+
             textFromUser = "Введите номер кабинета.";
 
             return new BotTextMessage(textFromUser);
@@ -181,6 +183,8 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
+            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.SecondAddressPlace.Name);
+
             textFromUser = "Введите номер кабинета.";
 
             return new BotTextMessage(textFromUser);
@@ -189,6 +193,8 @@ public class StartLogic
         if (textFromUser.Equals(InlineButtonsStorage.ThirdAddressPlace.CallBackData))
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
+            
+            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.ThirdAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -198,6 +204,8 @@ public class StartLogic
         if (textFromUser.Equals(InlineButtonsStorage.FourAddressPlace.CallBackData))
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
+            
+            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.FourAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -207,6 +215,8 @@ public class StartLogic
         if (textFromUser.Equals(InlineButtonsStorage.FiveAddressPlace.CallBackData))
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
+            
+            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.FiveAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 

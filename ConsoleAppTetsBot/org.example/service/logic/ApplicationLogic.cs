@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using ConsoleAppTetsBot.org.example.ApiWorker;
 using ConsoleAppTetsBot.org.example.Buttons;
 using ConsoleAppTetsBot.org.example.statemachine;
 
@@ -6,6 +7,13 @@ namespace ConsoleAppTetsBot.org.example.service.logic;
 
 public class ApplicationLogic
 {
+    private ApplicationApiWorker _applicationApiWorker;
+
+    public ApplicationLogic()
+    {
+        _applicationApiWorker = new ApplicationApiWorker();
+    }
+
     #region ввод номера кабинета
 
     public BotTextMessage ProcessWaitingInputCabinetNumber(string textFromUser,
@@ -89,7 +97,7 @@ public class ApplicationLogic
 
     #endregion
 
-    #region обработчик нажатия кнопок (хотите ли вы добавить фото)
+    #region обработчик нажатия кнопок (хотите ли вы добавить фото), если не добавили фото, то просто выводим данные заявки для верификации.
 
     public BotTextMessage ProcessWaitingQuestionAddPhoto(string textFromUser,
         TransmittedData transmittedData)
@@ -115,6 +123,9 @@ public class ApplicationLogic
         {
             StringBuilder stringBuilder = new StringBuilder("Проверьте данные\n\n");
 
+            stringBuilder.Append("Адрес: ").Append(transmittedData.DataStorage.Get("AddressPlace"))
+                .Append("\n");
+
             stringBuilder.Append("номер кабинета: ").Append(transmittedData.DataStorage.Get("cabinetNumber"))
                 .Append("\n");
 
@@ -138,18 +149,23 @@ public class ApplicationLogic
 
     #endregion
 
-    #region обработка фото
+    #region обработка фото + показ данных заявки
 
     public BotTextMessage ProcessWaitingPhoto(string textFromUser,
         TransmittedData transmittedData)
     {
         StringBuilder stringBuilder = new StringBuilder("Фото успешно прикрепленно. \n Проверьте данные\n\n");
 
-        stringBuilder.Append("номер кабинета: ").Append(transmittedData.DataStorage.Get("cabinetNumber")).Append("\n");
+        stringBuilder.Append("Адрес: ").Append(transmittedData.DataStorage.Get("AddressPlace"))
+            .Append("\n");
 
-        stringBuilder.Append("ФИО: ").Append(transmittedData.DataStorage.Get("FIO")).Append("\n");
+        stringBuilder.Append("номер кабинета: ").Append(transmittedData.DataStorage.Get("cabinetNumber"))
+            .Append("\n");
 
-        stringBuilder.Append("номер телефона: ").Append(transmittedData.DataStorage.Get("numberPhone")).Append("\n");
+        stringBuilder.Append("ФИО: ").Append(transmittedData.DataStorage.Get("fullName")).Append("\n");
+
+        stringBuilder.Append("номер телефона: ").Append(transmittedData.DataStorage.Get("numberPhone"))
+            .Append("\n");
 
         stringBuilder.Append("описание проблемы: ").Append(transmittedData.DataStorage.Get("descriptionProblem"))
             .Append("\n");
@@ -163,12 +179,13 @@ public class ApplicationLogic
 
     #endregion
 
-    #region проверка данных на точность ввода + заявка и отправка заявки
+    #region отправка заявки в API + получение id заявки с API
 
     public BotTextMessage ProcessWaitingDataVerification(string textFromUser,
         TransmittedData transmittedData)
     {
-        if (!textFromUser.Equals(InlineButtonsStorage.SendApplication.CallBackData) && !textFromUser.Equals(InlineButtonsStorage.CancelApplication.CallBackData))
+        if (!textFromUser.Equals(InlineButtonsStorage.SendApplication.CallBackData) &&
+            !textFromUser.Equals(InlineButtonsStorage.CancelApplication.CallBackData))
         {
             textFromUser = "Ошибка. Нажмите на кнопку.";
 
@@ -179,7 +196,23 @@ public class ApplicationLogic
         {
             transmittedData.State = State.WaitingReadApplication;
 
-            textFromUser = "Заявка №222 успешно создана! Вам придет уведомление, когда статус заявки будет изменен";
+
+            ApplicationEntity applicationEntity = new ApplicationEntity()
+            {
+                AddressPlace = transmittedData.DataStorage.Get("AddressPlace"),
+                NumberCabinet = transmittedData.DataStorage.Get("cabinetNumber"),
+                FullName = transmittedData.DataStorage.Get("fullName"),
+                NumberPhone = transmittedData.DataStorage.Get("numberPhone"),
+                DescriptionProblem = transmittedData.DataStorage.Get("descriptionProblem"),
+            };
+
+            applicationEntity = _applicationApiWorker.AddNew(applicationEntity);
+
+            //applicationEntity = _applicationApiWorker.GetById();
+
+            /*textFromUser = $"Заявка № {applicationEntity.Id} успешно создана! Вам придет уведомление, когда статус заявки будет изменен";*/
+
+            /*textFromUser = $"address place: {applicationEntity.AddressPlace}, \nnumber cabinet: {applicationEntity.NumberCabinet}, \nfullname: {applicationEntity.FullName}, \nnumber phone: {applicationEntity.NumberPhone}, \ndescription problem: {applicationEntity.DescriptionProblem}";*/
 
             transmittedData.DataStorage.Clear();
 
