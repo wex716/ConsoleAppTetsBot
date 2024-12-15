@@ -6,7 +6,7 @@ namespace ConsoleAppTetsBot.org.example.ApiWorker;
 public class ApplicationApiWorker
 {
     
-    public ApplicationEntity GetById(int id) // ???????
+    public ApplicationEntity GetByIdApplication(int id) // ???????
     {
         HttpClient httpClient = new HttpClient();
         string jsonAsString = httpClient.GetStringAsync($"https://jsonplaceholder.typicode.com/posts/{id}").Result;
@@ -16,7 +16,7 @@ public class ApplicationApiWorker
         return applicationEntity;
     }
     
-    public ApplicationEntity AddNew(ApplicationEntity insertFakePost)
+    public ApplicationEntity AddNewApplication(ApplicationEntity insertFakePost)
     {
         HttpClient httpClient = new HttpClient();
         string insertFakePostAsJson = JsonSerializer.Serialize(insertFakePost);
@@ -29,5 +29,14 @@ public class ApplicationApiWorker
         ApplicationEntity addedFakePost = JsonSerializer.Deserialize<ApplicationEntity>(addedFakePostAsJson);
 
         return addedFakePost;
+    }
+    public List<ApplicationEntity> GetByAllApplication(int id)
+    {
+        HttpClient httpClient = new HttpClient();
+        string jsonAsString = httpClient.GetStringAsync($"https://jsonplaceholder.typicode.com/posts/{id}").Result;
+
+        List<ApplicationEntity> applicationEntities = JsonSerializer.Deserialize<List<ApplicationEntity>>(jsonAsString);
+
+        return applicationEntities;
     }
 }

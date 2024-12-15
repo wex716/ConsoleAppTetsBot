@@ -1,6 +1,7 @@
 ﻿using ConsoleAppTetsBot.org.example.Buttons;
 using ConsoleAppTetsBot.org.example.EmulatorBd;
 using ConsoleAppTetsBot.org.example.statemachine;
+using Telegram.Bot.Types;
 
 namespace ConsoleAppTetsBot.org.example.service.logic;
 
@@ -172,7 +173,7 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.FirstAddressPlace.Name);
+            transmittedData.DataStorage.Add("AddressPlace", 1);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -183,7 +184,7 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.SecondAddressPlace.Name);
+            transmittedData.DataStorage.Add("AddressPlace", 2);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -193,8 +194,8 @@ public class StartLogic
         if (textFromUser.Equals(InlineButtonsStorage.ThirdAddressPlace.CallBackData))
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
-            
-            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.ThirdAddressPlace.Name);
+
+            transmittedData.DataStorage.Add("AddressPlace", 3);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -204,8 +205,8 @@ public class StartLogic
         if (textFromUser.Equals(InlineButtonsStorage.FourAddressPlace.CallBackData))
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
-            
-            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.FourAddressPlace.Name);
+
+            transmittedData.DataStorage.Add("AddressPlace", 4);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -215,8 +216,8 @@ public class StartLogic
         if (textFromUser.Equals(InlineButtonsStorage.FiveAddressPlace.CallBackData))
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
-            
-            transmittedData.DataStorage.Add("AddressPlace", InlineButtonsStorage.FiveAddressPlace.Name);
+
+            transmittedData.DataStorage.Add("AddressPlace", 5);
 
             textFromUser = "Введите номер кабинета.";
 

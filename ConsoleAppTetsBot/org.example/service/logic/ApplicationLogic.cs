@@ -2,6 +2,7 @@
 using ConsoleAppTetsBot.org.example.ApiWorker;
 using ConsoleAppTetsBot.org.example.Buttons;
 using ConsoleAppTetsBot.org.example.statemachine;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace ConsoleAppTetsBot.org.example.service.logic;
 
@@ -196,23 +197,25 @@ public class ApplicationLogic
         {
             transmittedData.State = State.WaitingReadApplication;
 
-
             ApplicationEntity applicationEntity = new ApplicationEntity()
             {
-                AddressPlace = transmittedData.DataStorage.Get("AddressPlace"),
-                NumberCabinet = transmittedData.DataStorage.Get("cabinetNumber"),
-                FullName = transmittedData.DataStorage.Get("fullName"),
-                NumberPhone = transmittedData.DataStorage.Get("numberPhone"),
-                DescriptionProblem = transmittedData.DataStorage.Get("descriptionProblem"),
+                //TgId = (int)transmittedData.DataStorage.Get("TgId"),
+                IdAddress = (int)transmittedData.DataStorage.Get("AddressPlace"),
+                NumberCabinet = (string)transmittedData.DataStorage.Get("cabinetNumber"),
+                FullName = (string)transmittedData.DataStorage.Get("fullName"),
+                NumberPhone = (string)transmittedData.DataStorage.Get("numberPhone"),
+                DescriptionProblem = (string)transmittedData.DataStorage.Get("descriptionProblem"),
             };
+            
+            applicationEntity = _applicationApiWorker.AddNewApplication(applicationEntity);
 
-            applicationEntity = _applicationApiWorker.AddNew(applicationEntity);
+            //applicationEntity = _applicationApiWorker.GetByIdApplication(1);
 
-            //applicationEntity = _applicationApiWorker.GetById();
+            // textFromUser =
+            //     $"Заявка № {applicationEntity.Id} успешно создана! Вам придет уведомление, когда статус заявки будет изменен";
 
-            /*textFromUser = $"Заявка № {applicationEntity.Id} успешно создана! Вам придет уведомление, когда статус заявки будет изменен";*/
-
-            /*textFromUser = $"address place: {applicationEntity.AddressPlace}, \nnumber cabinet: {applicationEntity.NumberCabinet}, \nfullname: {applicationEntity.FullName}, \nnumber phone: {applicationEntity.NumberPhone}, \ndescription problem: {applicationEntity.DescriptionProblem}";*/
+            textFromUser =
+                $" address place: {applicationEntity.IdAddress}, \nnumber cabinet: {applicationEntity.NumberCabinet}, \nfullname: {applicationEntity.FullName}, \nnumber phone: {applicationEntity.NumberPhone}, \ndescription problem: {applicationEntity.DescriptionProblem}";
 
             transmittedData.DataStorage.Clear();
 
