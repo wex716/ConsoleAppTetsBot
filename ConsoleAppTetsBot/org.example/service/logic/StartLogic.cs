@@ -93,7 +93,7 @@ public class StartLogic
 
             //  textFromUser = $"Заявка номер: {currentHistories.IdHistoryApplication} \nСтатус: {currentHistories.Status} \nАдерс: {currentHistories.Address} \nКабинет: {currentHistories.Cabinet} \nФИО: {currentHistories.Fullname} \nТелефон: {currentHistories.NumberPhone} \nДата создания: {currentHistories.DateTime} \nПроблема: {currentHistories.Description}";
 
-            transmittedData.State = State.WaitingShowHistory;
+            transmittedData.State = State.WaitingFirstShowCommands;
 
             return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetNextShowKeyboard);
         }

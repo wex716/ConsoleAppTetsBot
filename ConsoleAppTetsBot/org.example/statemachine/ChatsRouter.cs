@@ -31,10 +31,6 @@ public class ChatsRouter
         return _serviceManager.ProcessBotUpdate(textFromUser, transmittedData);
     }
 }
-
-
-
-
         //     string filePath = null;
         //     
         //     try

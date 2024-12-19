@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConsoleAppTetsBot")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e4b868dc4cc42d279bfec32f81ec2a0dbc77bbe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc7fd0d21bd807df42a6e7f0e33298ab630867b6")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConsoleAppTetsBot")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConsoleAppTetsBot")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
