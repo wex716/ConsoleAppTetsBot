@@ -30,13 +30,13 @@ public class ApplicationApiWorker
         return addedFakePost;
     }
 
-    public List<ApplicationEntity> GetByAllApplication()
+    public List<HistoryApplication> GetByAllApplication()
     {
         HttpClient httpClient = new HttpClient();
         string jsonAsString = httpClient.GetStringAsync($"https://jsonplaceholder.typicode.com/posts/").Result;
 
-        List<ApplicationEntity> applicationEntities = JsonSerializer.Deserialize<List<ApplicationEntity>>(jsonAsString);
+        List<HistoryApplication> historyApplications = JsonSerializer.Deserialize<List<HistoryApplication>>(jsonAsString);
 
-        return applicationEntities;
+        return historyApplications;
     }
 }

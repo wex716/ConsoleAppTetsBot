@@ -1,10 +1,21 @@
-﻿using ConsoleAppTetsBot.org.example.Buttons;
+﻿using System.Text;
+using ConsoleAppTetsBot.org.example.ApiWorker;
+using ConsoleAppTetsBot.org.example.Buttons;
 using ConsoleAppTetsBot.org.example.statemachine;
 
 namespace ConsoleAppTetsBot.org.example.service.logic;
 
 public class StartLogic
 {
+    private HistoryApplication _historyApplication;
+    private ApplicationApiWorker _applicationApiWorker;
+
+    public StartLogic()
+    {
+        _historyApplication = new HistoryApplication();
+        _applicationApiWorker = new ApplicationApiWorker();
+    }
+
     #region старт
 
     public BotTextMessage ProcessWaitingCommandStart(string textFromUser, TransmittedData transmittedData)
@@ -61,13 +72,18 @@ public class StartLogic
 
         if (textFromUser.Equals(InlineButtonsStorage.SubmitHistory.CallBackData))
         {
-            transmittedData.State = State.WaitingApplication;
+            List<HistoryApplication> historyApplications = _applicationApiWorker.GetByAllApplication().GetRange(0, 5);
 
-            textFromUser = "Пожалуйста, выберите адрес площадки.";
+            StringBuilder stringBuilder = new StringBuilder();
 
-            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetAddressKeyboard);
+            foreach (HistoryApplication historyLogic in historyApplications)
+            {
+                stringBuilder.AppendLine(
+                    $"Заявка номер: {historyLogic.IdHistoryApplication} \nСтатус: {historyLogic.Status} \nАдерс" );
+            }
+
+            return new BotTextMessage(stringBuilder.ToString());
         }
-
 
         return null;
     }
@@ -151,9 +167,6 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("addressId", 1);
-            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.FirstAddressPlace.Name);
-
             textFromUser = "Введите номер кабинета.";
 
             return new BotTextMessage(textFromUser);
@@ -162,9 +175,6 @@ public class StartLogic
         if (textFromUser.Equals(InlineButtonsStorage.SecondAddressPlace.CallBackData))
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
-
-            transmittedData.DataStorage.Add("addressId", 2);
-            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.SecondAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -175,9 +185,6 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("addressId", 3);
-            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.ThirdAddressPlace.Name);
-
             textFromUser = "Введите номер кабинета.";
 
             return new BotTextMessage(textFromUser);
@@ -187,9 +194,6 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("addressId", 4);
-            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.FourAddressPlace.Name);
-
             textFromUser = "Введите номер кабинета.";
 
             return new BotTextMessage(textFromUser);
@@ -198,9 +202,6 @@ public class StartLogic
         if (textFromUser.Equals(InlineButtonsStorage.FiveAddressPlace.CallBackData))
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
-
-            transmittedData.DataStorage.Add("addressId", 5);
-            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.FiveAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 

@@ -75,12 +75,7 @@ public class ServiceManager
         _methods.Add(State.WaitingReadApplication, _applicationLogic.ProcessWaitingReadApplication);
 
         #endregion
-
-        #region история завявок
-
-        _methods.Add(State.WaitingShowHistory, _startLogic.ProcessWaitingShowHistory);
-
-        #endregion
+        
     }
 
     public BotTextMessage ProcessBotUpdate(string textData, TransmittedData transmittedData)
