@@ -3,7 +3,8 @@ using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using InputFile = Microsoft.AspNetCore.Components.Forms.InputFile;
+using Telegram.Bot.Types.InputFiles;
+
 
 namespace ConsoleAppTetsBot;
 
@@ -22,9 +23,7 @@ public class BotHandlers
         long chatId = 0;
         int messageId = 0;
         string textFromUser = "";
-
-        // PhotoSize[] photo = null;
-
+        InputOnlineFile photo = null;
         bool canRoute = false;
 
         switch (update.Type)
@@ -38,12 +37,10 @@ public class BotHandlers
                     textFromUser = update.Message.Text;
                 }
 
-                else if (update.Message.Photo != null)
+                if (update.Message.Type == MessageType.Photo)
                 {
-                    canRoute = true;
-                    chatId = update.Message.Chat.Id;
-                    //var photo = update.Message.Photo;
-                    messageId = update.CallbackQuery.Message.MessageId;
+                    photo = new InputOnlineFile(update.Message.Photo[^1].FileId);
+                    textFromUser = "";
                 }
 
                 break;
@@ -65,7 +62,8 @@ public class BotHandlers
             try
             {
                 BotTextMessage botTextMessage =
-                    await Task.Run(() => _chatsRouter.Route(chatId, textFromUser, photo: new InputFile()), cancellationToken);
+                    await Task.Run(() => _chatsRouter.Route(chatId, textFromUser, photo),
+                        cancellationToken);
 
                 await botClient.SendTextMessageAsync(
                     chatId: chatId,

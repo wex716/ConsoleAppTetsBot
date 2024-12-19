@@ -16,3 +16,4 @@ C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTets
 C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.genruntimeconfig.cache
 C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ref\ConsoleAppTetsBot.dll
 C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\obj\Debug\net8.0\ConsoleAppTetsBot.sourcelink.json
+C:\Users\Пользователь\RiderProjects\ConsoleAppTetsBot\ConsoleAppTetsBot\bin\Debug\net8.0\Newtonsoft.Json.dll

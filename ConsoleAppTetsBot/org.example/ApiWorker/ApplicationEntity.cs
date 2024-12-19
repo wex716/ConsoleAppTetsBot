@@ -11,6 +11,7 @@ public class ApplicationEntity
     public string FullName { get; set; }
     public string NumberPhone { get; set; }
     public string DescriptionProblem { get; set; }
+    public string Photo { get; set; }
     
     
     

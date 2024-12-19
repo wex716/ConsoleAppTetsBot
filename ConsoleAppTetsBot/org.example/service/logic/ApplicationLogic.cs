@@ -155,7 +155,7 @@ public class ApplicationLogic
     public BotTextMessage ProcessWaitingPhoto(string textFromUser,
         TransmittedData transmittedData)
     {
-        StringBuilder stringBuilder = new StringBuilder("Проверьте данные\n\n");
+        StringBuilder stringBuilder = new StringBuilder("Фотография успешно сохранена. Проверьте данные\n\n");
 
         stringBuilder.Append("Адрес: ").Append(transmittedData.DataStorage.Get("addressPlace"))
             .Append("\n");
@@ -205,6 +205,7 @@ public class ApplicationLogic
                 FullName = (string)transmittedData.DataStorage.Get("fullName"),
                 NumberPhone = (string)transmittedData.DataStorage.Get("numberPhone"),
                 DescriptionProblem = (string)transmittedData.DataStorage.Get("descriptionProblem"),
+                Photo = (string)transmittedData.DataStorage.Get("fileId"),
             };
 
             applicationEntity = _applicationApiWorker.AddNewApplication(applicationEntity);
@@ -215,7 +216,7 @@ public class ApplicationLogic
                 $"Заявка № 228 успешно создана! Вам придет уведомление, когда статус заявки будет изменен";
 
             // textFromUser =
-            //     $"UserId: {applicationEntity.UserId} \nAddressId: {applicationEntity.AddressId}, \nnumber cabinet: {applicationEntity.NumberCabinet}, \nfullname: {applicationEntity.FullName}, \nnumber phone: {applicationEntity.NumberPhone}, \ndescription problem: {applicationEntity.DescriptionProblem}";
+            //     $"UserId: {applicationEntity.UserId} \nAddressId: {applicationEntity.AddressId}, \nnumber cabinet: {applicationEntity.NumberCabinet}, \nfullname: {applicationEntity.FullName}, \nnumber phone: {applicationEntity.NumberPhone}, \ndescription problem: {applicationEntity.DescriptionProblem} \nurl photo: {applicationEntity.Photo}";
 
             transmittedData.DataStorage.Clear();
 
