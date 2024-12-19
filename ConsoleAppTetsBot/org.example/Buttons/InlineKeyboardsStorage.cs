@@ -210,7 +210,7 @@ public class InlineKeyboardsStorage
         new[]
         {
             InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.Back.Name,
-                InlineButtonsStorage.Next.CallBackData),
+                InlineButtonsStorage.Back.CallBackData),
         },
         new[]
         {
