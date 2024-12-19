@@ -72,17 +72,28 @@ public class StartLogic
 
         if (textFromUser.Equals(InlineButtonsStorage.SubmitHistory.CallBackData))
         {
-            List<HistoryApplication> historyApplications = _applicationApiWorker.GetByAllApplication().GetRange(0, 5);
+            List<HistoryApplication> historyApplications = _applicationApiWorker.GetByAllApplication();
 
-            StringBuilder stringBuilder = new StringBuilder();
-
-            foreach (HistoryApplication historyLogic in historyApplications)
+            if (historyApplications.Count == 0)
             {
-                stringBuilder.AppendLine(
-                    $"Заявка номер: {historyLogic.IdHistoryApplication} \nСтатус: {historyLogic.Status} \nАдерс" );
+                return new BotTextMessage("Нет истории заявок.", InlineKeyboardsStorage.GetNextShowKeyboard);
             }
 
-            return new BotTextMessage(stringBuilder.ToString());
+            int countHistoriesLogic = historyApplications.Count();
+            int currentHistoriesLogic = 1;
+
+            transmittedData.DataStorage.Add("historyApplications", historyApplications);
+            transmittedData.DataStorage.Add("countHistoriesLogic", countHistoriesLogic);
+            transmittedData.DataStorage.Add("currentHistoriesLogic", currentHistoriesLogic);
+
+            HistoryApplication currentHistories = historyApplications[currentHistoriesLogic - 1];
+
+            textFromUser =
+                $"userId:{currentHistories.UserId}\nid:{currentHistories.Id}\ntitle:{currentHistories.Title}\nbody:{currentHistories.Title}";
+
+            //  textFromUser = $"Заявка номер: {currentHistories.IdHistoryApplication} \nСтатус: {currentHistories.Status} \nАдерс: {currentHistories.Address} \nКабинет: {currentHistories.Cabinet} \nФИО: {currentHistories.Fullname} \nТелефон: {currentHistories.NumberPhone} \nДата создания: {currentHistories.DateTime} \nПроблема: {currentHistories.Description}";
+
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetNextShowKeyboard);
         }
 
         return null;
@@ -218,42 +229,6 @@ public class StartLogic
         }
 
         return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetProblemSystemShowKeyboard);
-    }
-
-    #endregion
-
-    #region история заявок
-
-    public BotTextMessage ProcessWaitingShowHistory(string textFromUser, TransmittedData transmittedData)
-    {
-        if (!textFromUser.Equals(InlineButtonsStorage.Next.CallBackData) &&
-            !textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
-        {
-            textFromUser = "Ошибка. Нажмите на кнопку.";
-            return new BotTextMessage(
-                textFromUser
-            );
-        }
-
-        if (textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))
-        {
-            transmittedData.State = State.WaitingQuestionsOrApplicationOrHistory;
-
-            textFromUser = "Выберите то что вы хотите.";
-
-            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetStartKeyboard);
-        }
-
-        if (textFromUser.Equals(InlineButtonsStorage.Next.CallBackData))
-        {
-            transmittedData.State = State.WaitingQuestionsOrApplicationOrHistory;
-
-            textFromUser = "Следуюшей заявки не будет.Выберите то что вы хотите.";
-
-            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetStartKeyboard);
-        }
-
-        return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetStartKeyboard);
     }
 
     #endregion

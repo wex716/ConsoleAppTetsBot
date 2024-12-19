@@ -53,7 +53,10 @@ public enum State
 
     #region история заявок
 
-    WaitingShowHistory
+    WaitingShowHistory,
+    WaitingFirstShowCommands,
+    WaitingMiddleShowCommands,
+    WaitingLastShowCommands
 
     #endregion
 }

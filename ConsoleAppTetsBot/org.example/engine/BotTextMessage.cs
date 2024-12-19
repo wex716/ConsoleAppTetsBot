@@ -18,4 +18,10 @@ public class BotTextMessage
         Text = text;
         InlineKeyboardMarkup = inlineKeyboardMarkup;
     }
+
+    public BotTextMessage(InlineKeyboardMarkup inlineKeyboardMarkup)
+    {
+        Text = null;
+        InlineKeyboardMarkup = inlineKeyboardMarkup;
+    }
 }

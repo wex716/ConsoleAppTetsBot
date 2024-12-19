@@ -11,6 +11,7 @@ public class ServiceManager
     private StartLogic _startLogic;
     private FaqLogic _faqLogic;
     private ApplicationLogic _applicationLogic;
+    private HistoryLogic _historyLogic;
 
 
     public ServiceManager()
@@ -20,6 +21,7 @@ public class ServiceManager
         _startLogic = new StartLogic();
         _faqLogic = new FaqLogic();
         _applicationLogic = new ApplicationLogic();
+        _historyLogic = new HistoryLogic();
 
 
         #region начало работы бота
@@ -33,7 +35,7 @@ public class ServiceManager
 
         _methods.Add(State.WaitingApplication, _startLogic.ProcessWaitingApplication);
 
-        _methods.Add(State.WaitingHistory, _startLogic.ProcessWaitingQuestionsOrApplicationOrHistory);
+        
 
         #endregion
 
@@ -73,6 +75,15 @@ public class ServiceManager
         _methods.Add(State.WaitingPhoto, _applicationLogic.ProcessWaitingPhoto);
         _methods.Add(State.WaitingDataVerification, _applicationLogic.ProcessWaitingDataVerification);
         _methods.Add(State.WaitingReadApplication, _applicationLogic.ProcessWaitingReadApplication);
+
+        #endregion
+        
+        #region история заявок
+
+        _methods.Add(State.WaitingShowHistory, _startLogic.ProcessWaitingQuestionsOrApplicationOrHistory);
+        _methods.Add(State.WaitingFirstShowCommands, _historyLogic.ProcessWaitingShowHistory);
+        _methods.Add(State.WaitingMiddleShowCommands, _historyLogic.processWaitingMiddleShowCommands);
+        _methods.Add(State.WaitingLastShowCommands, _historyLogic.processWaitingLastShowCommands);
 
         #endregion
         
