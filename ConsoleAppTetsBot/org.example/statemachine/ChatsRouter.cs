@@ -21,11 +21,19 @@ public class ChatsRouter
     {
         if (!_routings.ContainsKey(chatId))
         {
-            _routings[chatId] = new TransmittedData(chatId);
+                _routings[chatId] = new TransmittedData(chatId);
         }
 
         TransmittedData transmittedData = _routings[chatId];
+        
+        transmittedData.DataStorage.Add("userId", chatId);
+
         return _serviceManager.ProcessBotUpdate(textFromUser, transmittedData);
+    }
+}
+
+
+
 
         //     string filePath = null;
         //     
@@ -51,5 +59,4 @@ public class ChatsRouter
         //     {
         //         return new BotTextMessage("пиздец");
         //     }
-    }
-}
+    

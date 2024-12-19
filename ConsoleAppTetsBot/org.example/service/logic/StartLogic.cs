@@ -1,7 +1,5 @@
 ﻿using ConsoleAppTetsBot.org.example.Buttons;
-using ConsoleAppTetsBot.org.example.EmulatorBd;
 using ConsoleAppTetsBot.org.example.statemachine;
-using Telegram.Bot.Types;
 
 namespace ConsoleAppTetsBot.org.example.service.logic;
 
@@ -63,33 +61,13 @@ public class StartLogic
 
         if (textFromUser.Equals(InlineButtonsStorage.SubmitHistory.CallBackData))
         {
-            EntityHistoryShowManager entityHistoryShowManager = new EntityHistoryShowManager();
-            var entityHistoryShows = entityHistoryShowManager.EntityHistoryShows;
+            transmittedData.State = State.WaitingApplication;
 
-            transmittedData.State = State.WaitingShowHistory;
+            textFromUser = "Пожалуйста, выберите адрес площадки.";
 
-            textFromUser = "Вот какие заявки вы оставляли:\n\n";
-
-            if (entityHistoryShows.Count > 0)
-            {
-                for (int i = 0; i < entityHistoryShows.Count; i++)
-                {
-                    EntityHistoryShow entityHistoryShow = entityHistoryShows[i];
-                    textFromUser += $"  ID: {entityHistoryShow.Id}\n";
-                    textFromUser += $"  Статус: {entityHistoryShow.IsActive}\n";
-                    textFromUser += $"  Адрес: {entityHistoryShow.AddressOfPlace}\n";
-                    textFromUser += $"  Кабинет: {entityHistoryShow.NumberCabinet}\n";
-                    textFromUser += $"  Телефон: {entityHistoryShow.NumberPhone}\n";
-                    textFromUser += $"  Описание: {entityHistoryShow.DesciptionOfProblem}\n";
-                    textFromUser += $"  Дата/Время: {entityHistoryShow.DateTime}\n";
-                    textFromUser += "\n";
-                }
-
-                return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetShowKeyboard);
-            }
-
-            return new BotTextMessage(textFromUser);
+            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetAddressKeyboard);
         }
+
 
         return null;
     }
@@ -173,7 +151,8 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("AddressPlace", 1);
+            transmittedData.DataStorage.Add("addressId", 1);
+            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.FirstAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -184,7 +163,8 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("AddressPlace", 2);
+            transmittedData.DataStorage.Add("addressId", 2);
+            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.SecondAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -195,7 +175,8 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("AddressPlace", 3);
+            transmittedData.DataStorage.Add("addressId", 3);
+            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.ThirdAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -206,7 +187,8 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("AddressPlace", 4);
+            transmittedData.DataStorage.Add("addressId", 4);
+            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.FourAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 
@@ -217,7 +199,8 @@ public class StartLogic
         {
             transmittedData.State = State.WaitingInputCabinetNumber;
 
-            transmittedData.DataStorage.Add("AddressPlace", 5);
+            transmittedData.DataStorage.Add("addressId", 5);
+            transmittedData.DataStorage.Add("addressPlace", InlineButtonsStorage.FiveAddressPlace.Name);
 
             textFromUser = "Введите номер кабинета.";
 

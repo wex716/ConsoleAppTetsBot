@@ -7,7 +7,7 @@ public class InlineButtonsStorage
 
     public static InlineButton BackToMenu { get; } = new InlineButton("Главное меню", "BackToMenu");
 
-    public static InlineButton ShowQuestions { get; } = new InlineButton("Частые вопросы", "ShowQuestions");
+    public static InlineButton ShowQuestions { get; } = new InlineButton("Частые вопросы", "ShowQuestions");    
 
     public static InlineButton SubmitApplication { get; } = new InlineButton("Оставить заявку", "SubmitApplication");
 

@@ -184,18 +184,4 @@ public class InlineKeyboardsStorage
                 InlineButtonsStorage.BackToMenu.CallBackData),
         }
     });
-
-    public static InlineKeyboardMarkup GetShowKeyboard = new(new[]
-    {
-        new[]
-        {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.Next.Name,
-                InlineButtonsStorage.Next.CallBackData),
-        },
-        new[]
-        {
-            InlineKeyboardButton.WithCallbackData(InlineButtonsStorage.BackToMenu.Name,
-                InlineButtonsStorage.BackToMenu.CallBackData),
-        }
-    });
 }

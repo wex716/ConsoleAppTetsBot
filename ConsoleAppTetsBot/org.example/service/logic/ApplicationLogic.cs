@@ -25,8 +25,8 @@ public class ApplicationLogic
             return new BotTextMessage("Ошибка ввода номера кабинета. Введите число.");
         }
 
-        transmittedData.DataStorage.Add("cabinetNumber", textFromUser);
 
+        transmittedData.DataStorage.Add("cabinetNumber", textFromUser);
         transmittedData.State = State.WaitingInputFullName;
 
         return new BotTextMessage("Номер кабинета успешно записан. Теперь введите ФИО.");
@@ -124,7 +124,7 @@ public class ApplicationLogic
         {
             StringBuilder stringBuilder = new StringBuilder("Проверьте данные\n\n");
 
-            stringBuilder.Append("Адрес: ").Append(transmittedData.DataStorage.Get("AddressPlace"))
+            stringBuilder.Append("Адрес: ").Append(transmittedData.DataStorage.Get("addressPlace"))
                 .Append("\n");
 
             stringBuilder.Append("номер кабинета: ").Append(transmittedData.DataStorage.Get("cabinetNumber"))
@@ -157,7 +157,7 @@ public class ApplicationLogic
     {
         StringBuilder stringBuilder = new StringBuilder("Фото успешно прикрепленно. \n Проверьте данные\n\n");
 
-        stringBuilder.Append("Адрес: ").Append(transmittedData.DataStorage.Get("AddressPlace"))
+        stringBuilder.Append("Адрес: ").Append(transmittedData.DataStorage.Get("addressPlace"))
             .Append("\n");
 
         stringBuilder.Append("номер кабинета: ").Append(transmittedData.DataStorage.Get("cabinetNumber"))
@@ -199,23 +199,23 @@ public class ApplicationLogic
 
             ApplicationEntity applicationEntity = new ApplicationEntity()
             {
-                //TgId = (int)transmittedData.DataStorage.Get("TgId"),
-                IdAddress = (int)transmittedData.DataStorage.Get("AddressPlace"),
+                UserId = (long)transmittedData.DataStorage.Get("userId"),
+                AddressId = (int)transmittedData.DataStorage.Get("addressId"),
                 NumberCabinet = (string)transmittedData.DataStorage.Get("cabinetNumber"),
                 FullName = (string)transmittedData.DataStorage.Get("fullName"),
                 NumberPhone = (string)transmittedData.DataStorage.Get("numberPhone"),
                 DescriptionProblem = (string)transmittedData.DataStorage.Get("descriptionProblem"),
             };
-            
+
             applicationEntity = _applicationApiWorker.AddNewApplication(applicationEntity);
 
-            //applicationEntity = _applicationApiWorker.GetByIdApplication(1);
-
+            // var userId = transmittedData.DataStorage.Get("userId");
+            // applicationEntity = _applicationApiWorker.GetByIdApplication((long)userId);
             // textFromUser =
             //     $"Заявка № {applicationEntity.Id} успешно создана! Вам придет уведомление, когда статус заявки будет изменен";
 
             textFromUser =
-                $" address place: {applicationEntity.IdAddress}, \nnumber cabinet: {applicationEntity.NumberCabinet}, \nfullname: {applicationEntity.FullName}, \nnumber phone: {applicationEntity.NumberPhone}, \ndescription problem: {applicationEntity.DescriptionProblem}";
+                $"UserId: {applicationEntity.UserId} \nAddressId: {applicationEntity.AddressId}, \nnumber cabinet: {applicationEntity.NumberCabinet}, \nfullname: {applicationEntity.FullName}, \nnumber phone: {applicationEntity.NumberPhone}, \ndescription problem: {applicationEntity.DescriptionProblem}";
 
             transmittedData.DataStorage.Clear();
 
