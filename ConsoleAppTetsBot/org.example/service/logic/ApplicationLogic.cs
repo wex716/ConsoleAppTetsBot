@@ -155,7 +155,7 @@ public class ApplicationLogic
     public BotTextMessage ProcessWaitingPhoto(string textFromUser,
         TransmittedData transmittedData)
     {
-        StringBuilder stringBuilder = new StringBuilder("Фото успешно прикрепленно. \n Проверьте данные\n\n");
+        StringBuilder stringBuilder = new StringBuilder("Проверьте данные\n\n");
 
         stringBuilder.Append("Адрес: ").Append(transmittedData.DataStorage.Get("addressPlace"))
             .Append("\n");

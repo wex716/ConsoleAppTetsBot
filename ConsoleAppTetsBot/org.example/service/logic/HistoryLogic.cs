@@ -49,10 +49,12 @@ public class HistoryLogic
                 transmittedData.State = State.WaitingLastShowCommands;
                 return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetBackKeyboard);
             }
-            
-            transmittedData.State = State.WaitingMiddleShowCommands;
-            
-            return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetMiddleShowKeyboard);
+            else
+            {
+                transmittedData.State = State.WaitingMiddleShowCommands;
+
+                return new BotTextMessage(textFromUser, InlineKeyboardsStorage.GetMiddleShowKeyboard);
+            }
         }
 
         if (textFromUser.Equals(InlineButtonsStorage.BackToMenu.CallBackData))

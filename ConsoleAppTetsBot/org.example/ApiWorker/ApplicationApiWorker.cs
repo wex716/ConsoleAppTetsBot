@@ -33,7 +33,7 @@ public class ApplicationApiWorker
     public List<HistoryApplication> GetByAllApplication()
     {
         HttpClient httpClient = new HttpClient();
-        string jsonAsString = httpClient.GetStringAsync($"https://jsonplaceholder.typicode.com/posts").Result;
+        string jsonAsString = httpClient.GetStringAsync($"https://jsonplaceholder.typicode.com/posts/").Result;
 
         List<HistoryApplication> historyApplications =
             JsonSerializer.Deserialize<List<HistoryApplication>>(jsonAsString);
