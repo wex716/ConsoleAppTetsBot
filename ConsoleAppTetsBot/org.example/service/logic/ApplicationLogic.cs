@@ -211,11 +211,11 @@ public class ApplicationLogic
 
             // var userId = transmittedData.DataStorage.Get("userId");
             // applicationEntity = _applicationApiWorker.GetByIdApplication((long)userId);
-            // textFromUser =
-            //     $"Заявка № {applicationEntity.Id} успешно создана! Вам придет уведомление, когда статус заявки будет изменен";
-
             textFromUser =
-                $"UserId: {applicationEntity.UserId} \nAddressId: {applicationEntity.AddressId}, \nnumber cabinet: {applicationEntity.NumberCabinet}, \nfullname: {applicationEntity.FullName}, \nnumber phone: {applicationEntity.NumberPhone}, \ndescription problem: {applicationEntity.DescriptionProblem}";
+                $"Заявка № 228 успешно создана! Вам придет уведомление, когда статус заявки будет изменен";
+
+            // textFromUser =
+            //     $"UserId: {applicationEntity.UserId} \nAddressId: {applicationEntity.AddressId}, \nnumber cabinet: {applicationEntity.NumberCabinet}, \nfullname: {applicationEntity.FullName}, \nnumber phone: {applicationEntity.NumberPhone}, \ndescription problem: {applicationEntity.DescriptionProblem}";
 
             transmittedData.DataStorage.Clear();
 
